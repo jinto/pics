@@ -1,0 +1,16 @@
+<img src="{{photo.url}}" />
+<br/>
+{{photo.photo_id}}
+{{photo.path}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).keypress(function(event){
+	if(String.fromCharCode(event.which) == 'r') {
+		location.href="/pics/random";
+	}
+	if(String.fromCharCode(event.which) == 'j') {
+		location.href="/pics/next/{{photo.photo_id}}";
+	}
+});
+</script>
+
