@@ -1,16 +1,96 @@
-<img src="{{photo.url}}" />
-<br/>
-{{photo.photo_id}}
-{{photo.path}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<title>zz</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+
+	<style>
+	.img-wrapper {
+	  width:100%;
+	  height:100%;
+	  min-width:100%;
+	  min-height:100%;
+	  background-image: url( '{{photo.url}}' );
+	 }
+
+	.img-overlay {
+	  position: absolute;
+	  /*top: 0;
+	  bottom: 0;
+	  left: 0;
+	  right: 0;
+	  text-align: left;*/
+	  position: fixed;
+	  bottom: 0px;
+	  right: 0px; 
+	}
+
+	.img-responsive {
+		max-width:100%;
+	}
+	.img-overlay:before {
+	  content: ' ';
+	  display: block;
+	  /* adjust 'height' to position overlay content vertically */
+	  height: 0;
+	}
+	.btn-primary-outline {
+	  background-color: transparent;
+	}
+	</style>
+</head>
+<body>
+
+    <div class="container-fluid">
+		<div class="row-fluid no-gutters">
+		    <div class="col-sm">
+				<img class="img-responsive" src="{{photo.url}}" />
+				<div class="img-wrapper" >
+					<div class="img-overlay">
+						<button id=random type="button" class="btn btn-primary btn-primary-outline">Random</button>
+						<button id=prev type="button" class="btn btn-primary btn-primary-outline">Prev</button>
+						<button id=next type="button" class="btn btn-primary btn-primary-outline">Next</button>
+					</div>
+				</div>
+
+				{{photo.pk}}
+				{{photo.path}}
+			</div>
+		</div>
+	</div>
+
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
 <script>
+function random() {
+	location.href="/pics/random";
+}
+function next() {
+	location.href="/pics/next/{{photo.pk}}";
+}
+function prev() {
+	location.href="/pics/prev/{{photo.pk}}";
+}
+$("#random").click(random);
+$("#next").click(next);
+$("#prev").click(prev);
+
 $(document).keypress(function(event){
-	if(String.fromCharCode(event.which) == 'r') {
-		location.href="/pics/random";
-	}
-	if(String.fromCharCode(event.which) == 'j') {
-		location.href="/pics/next/{{photo.photo_id}}";
-	}
+	if(String.fromCharCode(event.which) == 'r') random();
+	else if(String.fromCharCode(event.which) == 'j') next();
+	else if(String.fromCharCode(event.which) == 'k') prev();
 });
 </script>
 
+
+	</body>
+</html>

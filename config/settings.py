@@ -106,5 +106,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 PICS_FOLDER=[
-    'media/zz01/',
+    'media/folder01/',
 ]
