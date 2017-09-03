@@ -64,8 +64,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pics',
+        'USER': 'pics',
+        'PASSWORD': 'pics0101',
+        'HOST': 'postgres1',
+        #'HOST': '172.17.0.3',
+        #'HOST': '169.254.249.94',
+        #'HOST': 'docker',
+        #'PORT': '5432',
+        'PORT': '',
+        'CHARSET': 'utf8',
     }
 }
 
@@ -107,4 +116,7 @@ MEDIA_URL = '/media/'
 
 PICS_FOLDER=[
     'media/folder01/',
+    'media/folder02/',
 ]
+
+SILENCED_SYSTEM_CHECKS = ['mysql.E001']

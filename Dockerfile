@@ -5,9 +5,9 @@ RUN apt-get update \
         postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /src
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+WORKDIR /src
 
 EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
